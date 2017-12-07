@@ -1,8 +1,10 @@
 #inverted index
-import cvs
-def build_inverted_index(filename,keyindex,textindex):
+import csv
+
+
+def file_reader(filename,keyindex,textindex):
     csv_reader =csv.reader(open(filename))
-    d={}
+    l = []
     for line in csv_reader:
         document = line[keyindex]
         textstring = line[textindex]
@@ -12,8 +14,29 @@ def build_inverted_index(filename,keyindex,textindex):
                 cleantext = cleantext + letter
             else:
                 cleantext = cleantext + " "
-        wordlist = cleantext.split()
-        for word in wordlist:
-            d.setdefault(word,[])
-            d[word].append(document)
+        l.append([document,cleantext])
+    return l
+
+def build_inverted_index(filename,keyindex,textindex):
+    d = {}
+    f = file_reader(filename,0,4)
+    for word in f:
+        wordlist = word[1].split()
+        for w in wordlist:
+            d.setdefault(w,[])
+            d[w].append(word[0])
     return d
+
+def return_values(filename,key):
+    f = file_reader(filename,0,4)
+    d = mock_data_dic 
+    v = []
+    for k in mock_data_dic[key]:
+        v.append(f[int(k)])
+    return v
+
+
+mock_data_dic = build_inverted_index('MOCK_DATA.csv',0,4)
+
+
+print(return_values('MOCK_DATA.csv','Allergy'))
