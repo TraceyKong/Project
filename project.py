@@ -31,5 +31,8 @@ def return_values(filename,key):
         v.append(f[int(k)])
     return v
 
+def valid_key(key):
+    return key in mock_data_dic.keys()
+
 mock_data_dic = build_inverted_index('MOCK_DATA.csv',0,4)
-print(return_values('MOCK_DATA.csv','Dollar'))
+data_search = return_values('MOCK_DATA.csv','Dollar')
