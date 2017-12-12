@@ -23,16 +23,12 @@ def build_inverted_index(filename,keyindex,textindex):
             d[word].append(document)
     return d
 
-def return_values(filename,key):
-    f = file_reader(filename)
-    d = mock_data_dic 
-    v = []
-    for k in mock_data_dic[key]:
-        v.append(f[int(k)])
-    return v
+def return_values(keyindex):
+    return [mock_data[int(k)] for k in keyindex]
+
 
 def valid_key(key):
     return key in mock_data_dic.keys()
 
+mock_data = file_reader("MOCK_DATA.csv")
 mock_data_dic = build_inverted_index('MOCK_DATA.csv',0,4)
-data_search = return_values('MOCK_DATA.csv','Dollar')
