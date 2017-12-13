@@ -24,7 +24,10 @@ def build_inverted_index(filename,keyindex,textindex):
     return d
 
 def return_values(keyindex):
-    return [mock_data[int(k)] for k in keyindex]
+    if "ID" in keyindex: keyindex.remove("ID")
+    l = map(int,keyindex)
+    l.sort()
+    return [' '.join(mock_data[k]) for k in list(set(l))]
 
 
 def valid_key(key):
