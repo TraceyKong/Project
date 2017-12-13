@@ -1,7 +1,16 @@
 #adding AND query
 import project
 
-def and_query(key1,key2):
+def and_query_1(result,key):
+	if not result:
+		return project.mock_data_dic[key]
+	k = project.mock_data_dic[key]
+	r = []
+	for i in k:
+		if i in result: r.append(i)
+	return r
+
+def and_query_2(key1,key2):
 	if project.valid_key(key1) and project.valid_key(key2):
 		k1 = project.mock_data_dic[key1]
 		k2 = project.mock_data_dic[key2]

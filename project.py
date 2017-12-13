@@ -13,13 +13,7 @@ def build_inverted_index(filename,keyindex,textindex):
     for line in f:
         document = line[keyindex]
         textstring = line[textindex]
-        cleantext = ""
-        for letter in textstring:
-            if letter.isalpha():
-                cleantext = cleantext + letter
-            else:
-                cleantext = cleantext + " "
-        wordlist = cleantext.split() 
+        wordlist = clean_text(textstring).split() 
         for word in wordlist:
             d.setdefault(word,[])
             d[word].append(document)
@@ -40,6 +34,15 @@ def convert_country(data):
 
 def valid_key(key):
     return key in mock_data_dic.keys()
+
+def clean_text(line):
+    cleantext = ""
+    for letter in line:
+        if letter.isalpha():
+            cleantext = cleantext + letter
+        else:
+            cleantext = cleantext + " "
+    return cleantext
 
 mock_data = file_reader("MOCK_DATA.csv")
 convert_country(mock_data)
