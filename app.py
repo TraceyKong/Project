@@ -19,7 +19,7 @@ def index():
 	t = p.clean_text(term).split()
 	result = e1.and_query(t)
 	if result is None or not result: return nresult
- 	return render_template("inverted_index.html", result = p.return_values(result), lresult = str(len(result))+'/'+str(len(md))+' results',dresult = 'Results for "'+term+'" excluding "'+exclude+'".')
+ 	return render_template("inverted_index.html", result = p.return_values(result), lresult = str(len(result))+'/'+str(len(md))+' results',dresult = 'Results for "'+term+'.')
 
 @app.route("/input/narrow_search",methods=["POST","GET"])
 def narrow():
