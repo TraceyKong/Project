@@ -32,8 +32,16 @@ def convert_country(data):
         c = pycountry.countries.get(alpha2=i[3])
         i[3] = str(c.name)
 
-def valid_key(key):
-    return key in mock_data_dic.keys()
+def is_key(key):
+    keys = [i.lower() for i in mock_data_company.keys()]
+    return key.lower() in keys
+
+def get_key(key):
+    r = []
+    for i in mock_data_company.keys():
+        if i.lower() == key.lower():
+            r.append(i)
+    return r
 
 def clean_text(line):
     cleantext = ""
@@ -46,4 +54,7 @@ def clean_text(line):
 
 mock_data = file_reader("MOCK_DATA.csv")
 convert_country(mock_data)
-mock_data_dic = build_inverted_index('MOCK_DATA.csv',0,4)
+mock_data_company = build_inverted_index('MOCK_DATA.csv',0,4)
+mock_data_name = build_inverted_index('MOCK_DATA.csv',0,1)
+mock_data_gender = build_inverted_index('MOCK_DATA.csv',0,2)
+mock_data_nationality = build_inverted_index('MOCK_DATA.csv',0,3)

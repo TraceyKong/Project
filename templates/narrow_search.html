@@ -65,17 +65,27 @@
 			<h1 class="content-subhead">Global Pharmaceutical Companies</h1>
 			<h1> Top Employees</h1>
 			<form class="form" action="" method="POST" id="form1">
-				<a class="pure-button button-hover" href="/input" style="text-decoration: none;">Back</a><br/><br/>
-				<input name="term" type="text" placeholder="  Search" class="form1" /> 
-				<input class="pure-button button-hover" name="submit" type="submit">
-				<a class="pure-button button-hover" href="/input/narrow_search" style="text-decoration: none;">Reset</a>
+				<a class="pure-button" href="/input" style="text-decoration: none;">Back</a><br/><br/>
+				<select name="options" class="pure-button button-hover">
+					{% for o in options %}
+						<option value="{{o}}">{{o}}</option>
+					{% endfor %}
+				</select>
+				<input name="term" type="text" placeholder="  Search" class="form1" />  
 				<br/>
+				Exclude: <input name="exclude" type="text" placeholder="  Search" class="form1" style="margin-top: 6px; width:34.9%" />
+				<input class="pure-button button-hover" name="submit" type="submit">
+				<a class="pure-button button-hover" href="/input/narrow_search" style="text-decoration: none;">Reset</a><br/>
 				<div class="post-description">
-					*If you want the results to include the keywords, simply type a space between them, like:"Biogen Idec Inc.", "Inc Company"<br/>
-					*If you want the results to include any of the keywords, type "or" between them, like:"Inc or Company", "Pharmaceuticals or Teva"
+					*If you want the results to include the all keywords, simply type a space between themn , like:"Biogen Idec Inc.", "Inc Company"<br/>
+					*If you want the results to include any of the keywords, type "or" between them, like:"Inc or Company", "Pharmaceuticals USA or Teva"<br/>
+					*The above features also work in excluding keywords in the results.<br/>
+					*For example: "Inc company or Pharmaceuticals" returns results that either include both "Inc" and "company" or "Pharmaceuticals"<br/>
+					If you exclude "Harkins or h.j.", it returns results that include neither words.
 				</div>
 			</form>
-			<br/><br/>
+			<br/>
+			<div class="post-description" style="font-size: 22px">{{dresult}}</div><br/>
 			<div style="margin-bottom: 10px;"><u class="post-category post-category-js" style="text-decoration: none;">{{lresult}}</u></div>
 			<table style="width:100%">
 				<tr>
